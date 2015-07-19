@@ -67,7 +67,7 @@ Make a time series plot of the 5-minute interval (x-axis) and the average number
 activityByInterval <- group_by(activity, interval)
 activityMeanByInterval <- summarise(activityByInterval, AverageSteps = mean(steps, na.rm = TRUE))
 Average.Steps <- ts(activityMeanByInterval$AverageSteps, frequency=12, start = c(0,1))
-plot(Average.Steps, type = "l")
+plot(Average.Steps, type = "l", xlab = 'Time of Day (hours)', main = 'Steps per 5-minute interval')
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
@@ -162,21 +162,26 @@ Use the dataset with the filled-in missing values for this part. Create a new fa
 
 
 ```r
-day <- weekdays(activitySumByDate2$date, abbreviate = TRUE)
+day <- weekdays(activity$date, abbreviate = TRUE)
 day<- factor(day)
 levels(day) = c("weekday","weekday", "weekend", "weekend", "weekday", "weekday", "weekday")
-activitySumByDate2$day <- day
+activity$day <- day
 ```
 
 Make a panel plot containing a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). 
 
 
 ```r
+activityByInterval <- group_by(activity, day, interval)
+activityMeanByInterval <- summarise(activityByInterval, AverageSteps = mean(steps, na.rm = TRUE))
+weekday <- ts(activityMeanByInterval$AverageSteps[activityMeanByInterval$day == "weekday"], frequency=12, start = c(0,1))
+weekend <- ts(activityMeanByInterval$AverageSteps[activityMeanByInterval$day == "weekend"], frequency=12, start = c(0,1))
+stepsPerDay <- cbind(weekend, weekday)
 if (!require('lattice')){ 
   install.packages('lattice')
 }
 library(lattice)
-xyplot(stepsPerDay ~ date | day, data = activitySumByDate2, type = "l", layout = c(1, 2))
+xyplot(stepsPerDay, ylab = 'Number of Steps', xlab = 'Time of Day (hours)', main = 'Steps per 5-minute interval')
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-12-1.png) 
