@@ -4,7 +4,7 @@
 ## Loading and preprocessing the data
 
 Load the data.
-Process/transform the data (if necessary) into a format suitable for your analysis.
+Process/transform the data (if necessary) into a format suitable for your analysis
 
 
 ```r
