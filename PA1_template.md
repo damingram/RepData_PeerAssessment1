@@ -4,7 +4,7 @@
 ## Loading and preprocessing the data
 
 Load the data.
-Process/transform the data (if necessary) into a format suitable for your analysis
+Process/transform the data (if necessary) into a format suitable for your analysis.
 
 
 ```r
@@ -102,7 +102,7 @@ print(paste0("Number of missing values = ", n))
 Devise a strategy for filling in all of the missing values in the dataset, using the mean/median for that day, or the mean for that 5-minute interval, etc.
 Create a new dataset that is equal to the original dataset but with the missing data filled in.
 
-(using the median for that 5-minute interval to replce NAs)
+(using the mean for that 5-minute interval to replce NAs)
 
 
 ```r

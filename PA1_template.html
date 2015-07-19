@@ -110,7 +110,7 @@ print(paste0(&quot;Interval with max steps = &quot;, i))</code></pre>
 print(paste0(&quot;Number of missing values = &quot;, n))</code></pre>
 <pre><code>## [1] &quot;Number of missing values = 2304&quot;</code></pre>
 <p>Devise a strategy for filling in all of the missing values in the dataset, using the mean/median for that day, or the mean for that 5-minute interval, etc. Create a new dataset that is equal to the original dataset but with the missing data filled in.</p>
-<p>(using the median for that 5-minute interval to replce NAs)</p>
+<p>(using the mean for that 5-minute interval to replce NAs)</p>
 <pre class="r"><code>intervals &lt;- activity$interval[which(is.na(activity$steps))]
 means &lt;- vector()
 for (int in intervals){
